@@ -1,4 +1,5 @@
 import random
+
 PAGE_SIZE = 1024  # Page size in bytes
 FRAME_SIZE = 1024  # Frame size in bytes
 NUM_PAGES = 16  # Number of pages in logical memory
@@ -8,14 +9,12 @@ SECONDARY_STORAGE = {}  # Secondary storage to simulate disk storage
 def generate_logical_address():
     return random.randint(0, (NUM_PAGES * PAGE_SIZE) - 1)  # Generates a random logical address within the range of logical memory
 
-
 def handle_page_fault(page_number):
     if page_number not in SECONDARY_STORAGE:
         # Simulate loading page from disk into memory
         SECONDARY_STORAGE[page_number] = [random.randint(0, 255) for _ in range(PAGE_SIZE)]  # Generate random page data
     # Return the loaded page from secondary storage
     return SECONDARY_STORAGE[page_number]
-
 
 def main():
     random.seed()  # Seed random number generator
